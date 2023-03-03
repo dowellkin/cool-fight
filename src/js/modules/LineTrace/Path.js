@@ -200,17 +200,32 @@ export default class Path {
         }
     }
 
-    makeSvgPath()
+    getLocalStartPoint()
     {
         const rect = this.calculateRect();
-        const svgLineBuilder = SvgPath();
-
         const startPoint = this.getRealStartOffset();
-        console.log(startPoint);
-        const localStartPoint = {
+        return {
             x: startPoint.x - rect.x,
             y: startPoint.y - rect.y,
         };
+    }
+
+    getLocalEndPoint()
+    {
+        const rect = this.calculateRect();
+        const startPoint = this.getRealEndOffset();
+        return {
+            x: startPoint.x - rect.x,
+            y: startPoint.y - rect.y,
+        };
+    }
+
+
+    makeSvgPath()
+    {
+        const svgLineBuilder = SvgPath();
+
+        const localStartPoint = this.getLocalStartPoint();
 
         svgLineBuilder.moveTo(localStartPoint.x, localStartPoint.y);
 
