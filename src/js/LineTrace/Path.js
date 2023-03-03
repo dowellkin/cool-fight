@@ -86,4 +86,65 @@ export default class Path {
     {
         return this.path;
     }
+
+    /**
+     * @returns {{x: number, y: number}}
+     */
+    getRealStartOffset()
+    {
+        return this.calculateRealOffset(
+            this.from,
+            this.startEdge,
+            this.startOffsetX || 0,
+            this.startOffsetY || 0,
+        );
+    }
+
+    /**
+     * @returns {{x: number, y: number}}
+     */
+    getRealEndOffset()
+    {
+        return this.calculateRealOffset(
+            this.to,
+            this.endEdge,
+            this.endOffsetX || 0,
+            this.endOffsetY || 0,
+        );
+    }
+
+    /**
+     *
+     * @param {HTMLElement} element
+     * @param {int} edge
+     * @param {int} offsetX
+     * @param {int} offsetY
+     */
+    calculateRealOffset( element, edge, offsetX = 0, offsetY = 0 )
+    {
+        const elementRect = element.getBoundingClientRect()
+        let realOffsetX = elementRect.x + offsetX;
+        let realOffsetY = elementRect.y + offsetY;
+
+        if ( edge === EDGE_LEFT || edge === EDGE_RIGHT ) {
+            realOffsetY += elementRect.height * 0.5;
+        }
+        if ( edge === EDGE_RIGHT || edge === ( EDGE_RIGHT | EDGE_TOP ) ) {
+            realOffsetX += elementRect.width;
+        }
+
+        if ( edge === EDGE_TOP || edge === EDGE_BOTTOM ) {
+            realOffsetX += elementRect.width * 0.5;
+        }
+        if ( edge === EDGE_BOTTOM || edge === ( EDGE_LEFT | EDGE_BOTTOM ) ) {
+            realOffsetY += elementRect.height;
+        }
+
+        if ( edge === ( EDGE_RIGHT | EDGE_BOTTOM ) ) {
+            realOffsetX += elementRect.width;
+            realOffsetY += elementRect.height;
+        }
+
+        return {x: realOffsetX, y: realOffsetY};
+    }
 }
