@@ -56,5 +56,17 @@ body {
   }
 }
 
+.svg-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: animateSvgLine 2s linear forwards;
+  animation-play-state: running;
+}
+@keyframes animateSvgLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @import "./sections/section-1";
 @import "./sections/section-2";

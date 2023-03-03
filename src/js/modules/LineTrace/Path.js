@@ -30,6 +30,8 @@ export default class Path {
 
         this.startOffsetX = 0;
         this.startOffsetY = 0;
+
+        this.drawed = false;
     }
 
     setOffsetX( offsetX ) {
@@ -238,14 +240,13 @@ export default class Path {
 
         const localStartPoint = this.getLocalStartPoint();
 
-        svgLineBuilder.moveTo(localStartPoint.x - 0.5, localStartPoint.y + 0.5);
+        svgLineBuilder.moveTo(localStartPoint.x, localStartPoint.y);
 
         this.path.forEach(line => {
             const vector = line.getVector();
-            console.log(vector);
             svgLineBuilder
                 .relative()
-                .lineTo(vector.x - 0.5, vector.y + 0.5);
+                .lineTo(vector.x, vector.y);
         });
 
         return svgLineBuilder.end();

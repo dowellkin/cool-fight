@@ -4,7 +4,7 @@ export const DOT_TYPE_SOLID = 'solid';
 
 export default class LineTracer {
     constructor() {
-        this.borderWeight = 2;
+        this.borderWeight = 3;
         this.dotType = DOT_TYPE_SOLID;
         this.dotRadius = 5;
 
@@ -42,9 +42,9 @@ export default class LineTracer {
     {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         const rect = path.calculateRect();
-        svg.setAttribute('viewBox', `0 0 ${rect.width + 5} ${rect.height + 5}`);
-        svg.setAttribute('width', rect.width);
-        svg.setAttribute('height', rect.height);
+        svg.setAttribute('viewBox', `-10 -10 ${rect.width + 20} ${rect.height + 20}`);
+        svg.setAttribute('width', rect.width + 10);
+        svg.setAttribute('height', rect.height + 10);
         svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         svg.setAttribute('color', 'red');
         svg.style.position = 'absolute';
@@ -58,7 +58,7 @@ export default class LineTracer {
 
         const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         pathElement.setAttribute('d', svgPath);
-        pathElement.setAttribute('stroke', 'red');
+        pathElement.setAttribute('stroke', '#810026');
         pathElement.setAttribute('fill', 'none');
         pathElement.setAttribute('stroke-width', this.borderWeight);
 
@@ -70,6 +70,14 @@ export default class LineTracer {
 
         svg.style.display = 'none';
         svg.style.display = 'block';
+
+        window.addEventListener('resize', () => {
+            const rect = path.calculateRect();
+            svg.style.left = `${rect.x}px`;
+            svg.style.top = `${rect.y}px`;
+            pathElement.setAttribute('d', path.makeSvgPath());
+        })
+        svg.classList.add('svg-line');
 
         return svg;
     }
