@@ -34,4 +34,31 @@ export default class LineTracer {
     {
         this.lineList.push(path);
     }
+
+    /**
+     * @param {Path} path
+     */
+    makeSvg( path )
+    {
+        const svg = document.createElement('svg');
+        const rect = path.calculateRect();
+        svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+        svg.setAttribute('width', rect.width);
+        svg.setAttribute('height', rect.height);
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        svg.setAttribute('color', 'red');
+        svg.style.position = 'absolute';
+        svg.style.left = `${rect.x}px`;
+        svg.style.top = `${rect.y}px`;
+
+        const svgPath = path.makeSvgPath();
+
+        const pathStr = `<path d="${svgPath}" stroke="red" fill="none"/>`;
+
+        svg.innerHTML = `
+            ${pathStr}
+        `;
+
+        return svg;
+    }
 }

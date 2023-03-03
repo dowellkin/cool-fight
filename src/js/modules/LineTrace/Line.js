@@ -44,13 +44,21 @@ export default class Line {
         this.scaleY = scaleY;
     }
 
+    getVector()
+    {
+        return {
+            x: this.vectorX * this.scaleX,
+            y: this.vectorY * this.scaleY,
+        }
+    }
+
     getWidth()
     {
-        return this.vectorX * this.scaleX;
+        return Math.abs(this.vectorX * this.scaleX);
     }
 
     getHeight()
     {
-        return this.vectorY * this.scaleY;
+        return Math.abs(this.vectorY * this.scaleY);
     }
 }

@@ -1,4 +1,5 @@
 import Line from "./Line.js";
+import { default as SvgPath } from "svg-path-generator"
 
 export const EDGE_LEFT = 1;
 export const EDGE_RIGHT = 2;
@@ -161,5 +162,66 @@ export default class Path {
             this.roundRadiusMap[`${this.path.length - 1}-${this.path.length}`] = rounding;
         }
         this.path.push(line)
+    }
+
+    calculateRect()
+    {
+        let currentPoint = this.getRealStartOffset();
+        let minX = currentPoint.x;
+        let minY = currentPoint.y;
+        let maxX = currentPoint.x;
+        let maxY = currentPoint.y;
+
+        this.path.forEach( line => {
+            const vector = line.getVector();
+            currentPoint.x += vector.x;
+            currentPoint.y += vector.y;
+
+            if ( minX > currentPoint.x ) {
+                minX = currentPoint.x;
+            }
+            else if ( maxX < currentPoint.x ) {
+                maxX = currentPoint.x;
+            }
+
+            if ( minY > currentPoint.y ) {
+                minY = currentPoint.y;
+            }
+            else if ( maxY < currentPoint.y ) {
+                maxY = currentPoint.y;
+            }
+        });
+
+        return {
+            x: minX,
+            y: minY,
+            width: maxX - minX,
+            height: maxY - minY,
+        }
+    }
+
+    makeSvgPath()
+    {
+        const rect = this.calculateRect();
+        const svgLineBuilder = SvgPath();
+
+        const startPoint = this.getRealStartOffset();
+        console.log(startPoint);
+        const localStartPoint = {
+            x: startPoint.x - rect.x,
+            y: startPoint.y - rect.y,
+        };
+
+        svgLineBuilder.moveTo(localStartPoint.x, localStartPoint.y);
+
+        this.path.forEach(line => {
+            const vector = line.getVector();
+            console.log(vector);
+            svgLineBuilder
+                .relative()
+                .lineTo(vector.x, vector.y);
+        });
+
+        return svgLineBuilder.end();
     }
 }
