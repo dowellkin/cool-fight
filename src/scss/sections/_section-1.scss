@@ -3,6 +3,11 @@
     font-size: 44px;
     line-height: 48px;
     margin-bottom: 28px;
+
+    @media (max-width: map-get($grid-breakpoints, xl)) {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
   }
 
   .hero__img {
