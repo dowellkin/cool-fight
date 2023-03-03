@@ -56,5 +56,18 @@ body {
   }
 }
 
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes circleAppear {
+  to {
+    fill: #810026;
+    opacity: 1;
+  }
+}
+
 @import "./sections/section-1";
 @import "./sections/section-2";

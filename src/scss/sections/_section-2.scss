@@ -1,4 +1,6 @@
 .events {
+  position: relative;
+
   &__title {
     font-size: 44px;
     margin-bottom: 73px;
@@ -210,6 +212,48 @@
           transform: translateX(10%);
         }
       }
+    }
+  }
+
+  .svg-lines {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(calc(-100% - 100px));
+
+    &--right {
+      transform: translateX(99px);
+      top: -248px;
+    }
+
+    .circle {
+      opacity: 0;
+    }
+
+    path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+    }
+
+    &.animate {
+      path {
+        animation: dash 5s ease forwards;
+        animation-delay: 8.2s;
+      }
+      
+      .circle--upper {
+        animation: circleAppear .2s linear forwards;
+        animation-delay: 2.2s;
+      }
+      
+      .circle--lower {
+        animation: circleAppear .2s linear forwards;
+        animation-delay: 2.2s;
+      }
+    }
+
+    @media (max-width: map-get($grid-breakpoints, xxl)) {
+      display: none;
     }
   }
 }

@@ -1,4 +1,6 @@
 .hero {
+  position: relative;
+
   &__title {
     font-size: 44px;
     line-height: 48px;
@@ -17,5 +19,41 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+  }
+
+  .svg-lines {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(calc(-100% - 180px));
+
+    @media (max-width: map-get($grid-breakpoints, xxl)) {
+      display: none;
+    }
+
+    .circle {
+      opacity: 0;
+    }
+
+    path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+    }
+
+    &.animate {
+      path {
+        animation: dash 5s ease forwards;
+        animation-delay: .2s;
+      }
+      
+      .circle--upper {
+        animation: circleAppear .2s linear forwards;
+      }
+      
+      .circle--lower {
+        animation: circleAppear .2s linear forwards;
+        animation-delay: 2.2s;
+      }
+    }
   }
 }
