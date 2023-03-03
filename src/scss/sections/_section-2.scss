@@ -102,12 +102,15 @@
       z-index: 1;
       padding-bottom: 7px;
       padding-top: 6px;
+      padding-right: 4px;
+      border-top-left-radius: 15px;
       
       @media (max-width: map-get($grid-breakpoints, lg)) {
         width: 100%;
         text-align: left;
         padding-top: 12px;
         padding-bottom: 13px;
+        border-top-left-radius: 0px;
       }
 
       &::before {
@@ -126,10 +129,10 @@
       &::after {
         content: "";
         position: absolute;
-        left: 1px;
+        left: 13px;
         bottom: -1px;
         top: 0;
-        width: 62px;
+        width: 78px;
         transform: translateX(-100%) rotate(180deg);
         display: block;
         background: var(--color, $cl-blue);
