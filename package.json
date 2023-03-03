@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/devismoilov/my-gulp-builder#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",

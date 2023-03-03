@@ -1,8 +1,15 @@
-@import "./vendors/bootstrap-grid.min.css";
+@import "./variables";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import "./vendors/normalize/normalize.css";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+svg use {
+  fill: currentColor;
+}
 
 body {
-  background-color: #222831;
-  font-family: sans-serif;
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (max-width: 768px) {
