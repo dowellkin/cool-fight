@@ -27,6 +27,17 @@ export default class Path {
         this.roundRadiusMap = {};
         this.startEdge = EDGE_NONE;
         this.endEdge = EDGE_NONE;
+
+        this.startOffsetX = 0;
+        this.startOffsetY = 0;
+    }
+
+    setOffsetX( offsetX ) {
+        this.startOffsetX = offsetX;
+    }
+
+    setOffsetY( offsetY ) {
+        this.startOffsetY = offsetY;
     }
 
     /**
@@ -127,8 +138,8 @@ export default class Path {
     calculateRealOffset( element, edge, offsetX = 0, offsetY = 0 )
     {
         const elementRect = element.getBoundingClientRect()
-        let realOffsetX = elementRect.x + offsetX;
-        let realOffsetY = elementRect.y + offsetY;
+        let realOffsetX = elementRect.x + window.pageXOffset + offsetX;
+        let realOffsetY = elementRect.y + window.pageYOffset + offsetY;
 
         if ( edge === EDGE_LEFT || edge === EDGE_RIGHT ) {
             realOffsetY += elementRect.height * 0.5;
@@ -227,14 +238,14 @@ export default class Path {
 
         const localStartPoint = this.getLocalStartPoint();
 
-        svgLineBuilder.moveTo(localStartPoint.x, localStartPoint.y);
+        svgLineBuilder.moveTo(localStartPoint.x - 0.5, localStartPoint.y + 0.5);
 
         this.path.forEach(line => {
             const vector = line.getVector();
             console.log(vector);
             svgLineBuilder
                 .relative()
-                .lineTo(vector.x, vector.y);
+                .lineTo(vector.x - 0.5, vector.y + 0.5);
         });
 
         return svgLineBuilder.end();

@@ -40,9 +40,9 @@ export default class LineTracer {
      */
     makeSvg( path )
     {
-        const svg = document.createElement('svg');
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         const rect = path.calculateRect();
-        svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+        svg.setAttribute('viewBox', `0 0 ${rect.width + 5} ${rect.height + 5}`);
         svg.setAttribute('width', rect.width);
         svg.setAttribute('height', rect.height);
         svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
@@ -56,15 +56,20 @@ export default class LineTracer {
         const startPointPos = path.getLocalStartPoint();
         const endPointPos = path.getLocalEndPoint();
 
+        const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        pathElement.setAttribute('d', svgPath);
+        pathElement.setAttribute('stroke', 'red');
+        pathElement.setAttribute('fill', 'none');
+        pathElement.setAttribute('stroke-width', this.borderWeight);
+
         const startCircle = `<circle cx="${startPointPos.x}" cy="${startPointPos.y}" r="${this.dotRadius}"></circle>`
         const pathStr = `<path d="${svgPath}" stroke="red" fill="none"></path>`;
         const endCircle = `<circle cx="${endPointPos.x}" cy="${endPointPos.y}" r="${this.dotRadius}"></circle>`
 
-        svg.innerHTML = `
-            ${pathStr}
-            ${startCircle}
-            ${endCircle}
-        `;
+        svg.appendChild(pathElement);
+
+        svg.style.display = 'none';
+        svg.style.display = 'block';
 
         return svg;
     }

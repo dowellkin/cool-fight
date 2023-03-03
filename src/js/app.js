@@ -5,7 +5,7 @@ import Line from "./modules/LineTrace/Line.js";
 
 window.addEventListener('load', () => {
     const lineTracer = new LineTracer();
-    const path = new Path('.section__hero', '.section__events');
+    const path = new Path('.hero__image-wrapper', '.events__title');
     path.setStartEdge(EDGE_RIGHT | EDGE_BOTTOM);
     path.setEndEdge(EDGE_RIGHT);
 
@@ -15,6 +15,9 @@ window.addEventListener('load', () => {
     path.addLine(new Line(-202, 0))
     path.addLine(new Line(-74, 74))
     path.addLine(new Line(-260, 0))
+
+    path.setOffsetX(24);
+    path.setOffsetY(-160);
 
     const svg = lineTracer.makeSvg(path);
     document.body.appendChild(svg);
