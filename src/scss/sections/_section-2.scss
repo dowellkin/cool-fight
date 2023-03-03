@@ -13,6 +13,7 @@
     padding-top: 57%;
     background: var(--color, $cl-blue);
     transition: background-color .2s ease, border-color .2s ease;
+    overflow: hidden;
 
     @media (max-width: map-get($grid-breakpoints, lg)) {
       padding-top: 67%;
@@ -23,6 +24,7 @@
 
       .event-card__content {
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -93,8 +95,8 @@
       bottom: 0;
       right: 0;
       background: var(--color, $cl-blue);
-      opacity: 0;
-      transition: background-color .2s ease, opacity .3s ease;
+      // opacity: 0;
+      transition: background-color .2s ease, opacity .3s ease, transform .3s ease;
       color: #fff;
       text-align: right;
       max-width: 100%;
@@ -102,6 +104,7 @@
       z-index: 1;
       padding-bottom: 7px;
       padding-top: 6px;
+      transform: translateY(110%);
       
       @media (max-width: map-get($grid-breakpoints, lg)) {
         width: 100%;
@@ -176,6 +179,7 @@
       text-decoration: none;
       color: inherit;
       font-weight: 500;
+      transition: color .3s ease;
 
       svg {
         display: inline-block;
@@ -190,6 +194,8 @@
       }
 
       &:hover {
+        color: rgba(255, 255, 255, .7);
+
         svg {
           transform: translateX(10%);
         }
