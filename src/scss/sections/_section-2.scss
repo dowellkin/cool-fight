@@ -14,6 +14,10 @@
     background: var(--color, $cl-blue);
     transition: background-color .2s ease, border-color .2s ease;
 
+    @media (max-width: map-get($grid-breakpoints, lg)) {
+      padding-top: 67%;
+    }
+
     &:hover {
       --color: #{$cl-red};
 
@@ -52,6 +56,7 @@
       clip-path: url(#my-clip-path);
       font-size: 18px;
       transition: background-color .2s ease;
+      text-transform: capitalize;
 
       &::before {
         content: "";
@@ -101,6 +106,8 @@
       @media (max-width: map-get($grid-breakpoints, lg)) {
         width: 100%;
         text-align: left;
+        padding-top: 12px;
+        padding-bottom: 13px;
       }
 
       &::before {
@@ -141,6 +148,9 @@
           box-shadow: 0 20px 0 0 var(--color, $cl-blue);
           z-index: -1;
           transition: box-shadow .2s ease;
+          transform: none;
+          background: transparent;
+          clip-path: none;
         }
       }
     }
