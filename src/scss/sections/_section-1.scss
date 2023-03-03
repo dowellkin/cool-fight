@@ -1,11 +1,16 @@
 .hero {
   &__title {
     font-size: 44px;
+    line-height: 48px;
     margin-bottom: 28px;
-    text-align: center;
   }
 
   .hero__img {
     border-radius: 30px;
+
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }

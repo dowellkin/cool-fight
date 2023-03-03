@@ -1,0 +1,205 @@
+.events {
+  &__title {
+    margin-bottom: 73px;
+  }
+
+  .event-card {
+    --color: #{$cl-blue};
+    position: relative;
+    // overflow: hidden;
+    border: 6px solid var(--color, $cl-blue);
+    border-radius: 20px;
+    max-height: 249px;
+    padding-top: 57%;
+    background: var(--color, $cl-blue);
+    transition: background-color .2s ease, border-color .2s ease;
+
+    @media (max-width: map-get($grid-breakpoints, lg)) {
+      padding-top: 67%;
+    }
+
+    &:hover {
+      --color: #{$cl-red};
+
+      .event-card__content {
+        opacity: 1;
+      }
+    }
+
+    &__image {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      overflow: hidden;
+      border-radius: 12px;
+
+      img {
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__title {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: var(--color, $cl-blue);
+      color: #fff;
+      z-index: 1;
+      padding-left: 6px;
+      padding-bottom: 8px;
+      padding-top: 5px;
+      clip-path: url(#my-clip-path);
+      font-size: 18px;
+      transition: background-color .2s ease;
+      text-transform: capitalize;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        height: 40px;
+        width: 40px;
+        border-top-left-radius: 50%;
+        // background: #000;
+        box-shadow: 0 -20px 0 0 var(--color, $cl-blue);
+        z-index: -1;
+        transition: box-shadow .2s ease;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 1px;
+        top: -1px;
+        bottom: 0;
+        width: 45px;
+        transform: translateX(100%);
+        display: block;
+        background: var(--color, $cl-blue);
+        z-index: -1;
+        clip-path: url(#side-clip);
+        transition: background-color .2s ease;
+      }
+    }
+
+    &__content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: var(--color, $cl-blue);
+      opacity: 0;
+      transition: background-color .2s ease, opacity .3s ease;
+      color: #fff;
+      text-align: right;
+      max-width: 100%;
+      width: max-content;
+      z-index: 1;
+      padding-bottom: 7px;
+      padding-top: 6px;
+      padding-right: 4px;
+      border-top-left-radius: 15px;
+      
+      @media (max-width: map-get($grid-breakpoints, lg)) {
+        width: 100%;
+        text-align: left;
+        padding-top: 12px;
+        padding-bottom: 13px;
+        border-top-left-radius: 0px;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: 0;
+        height: 40px;
+        width: 40px;
+        border-bottom-right-radius: 50%;
+        box-shadow: 0 20px 0 0 var(--color, $cl-blue);
+        z-index: -1;
+        transition: box-shadow .2s ease;
+      }
+    
+      &::after {
+        content: "";
+        position: absolute;
+        left: 13px;
+        bottom: -1px;
+        top: 0;
+        width: 78px;
+        transform: translateX(-100%) rotate(180deg);
+        display: block;
+        background: var(--color, $cl-blue);
+        z-index: -1;
+        clip-path: url(#side-clip);
+        transition: background-color .2s ease;
+
+        @media (max-width: map-get($grid-breakpoints, lg)) {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: 0;
+          height: 40px;
+          width: 40px;
+          border-bottom-left-radius: 50%;
+          box-shadow: 0 20px 0 0 var(--color, $cl-blue);
+          z-index: -1;
+          transition: box-shadow .2s ease;
+          transform: none;
+          background: transparent;
+          clip-path: none;
+        }
+      }
+    }
+
+    &__main-content {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .8);
+      font-family: 'Noveo Sans', sans-serif;
+      line-height: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    &__learn-more-wrapper {
+      margin-top: 6px;
+      
+      @media (max-width: map-get($grid-breakpoints, lg)) {
+        display: none;
+      }
+    }
+
+    &__learn-more {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      transition: color .3s ease;
+
+      svg {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: transform .2s ease;
+        fill: currentColor;
+
+        path {
+          fill: currentColor;
+        }
+      }
+
+      &:hover {
+        color: rgba(255, 255, 255, .7);
+
+        svg {
+          transform: translateX(10%);
+        }
+      }
+    }
+  }
+}
