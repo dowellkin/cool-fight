@@ -53,10 +53,17 @@ export default class LineTracer {
 
         const svgPath = path.makeSvgPath();
 
-        const pathStr = `<path d="${svgPath}" stroke="red" fill="none"/>`;
+        const startPointPos = path.getLocalStartPoint();
+        const endPointPos = path.getLocalEndPoint();
+
+        const startCircle = `<circle cx="${startPointPos.x}" cy="${startPointPos.y}" r="${this.dotRadius}"></circle>`
+        const pathStr = `<path d="${svgPath}" stroke="red" fill="none"></path>`;
+        const endCircle = `<circle cx="${endPointPos.x}" cy="${endPointPos.y}" r="${this.dotRadius}"></circle>`
 
         svg.innerHTML = `
             ${pathStr}
+            ${startCircle}
+            ${endCircle}
         `;
 
         return svg;
