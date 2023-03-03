@@ -1,5 +1,11 @@
-.section__main {
-  .main-section__img {
+.hero {
+  &__title {
+    font-size: 44px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .hero__img {
     border-radius: 30px;
   }
 }
