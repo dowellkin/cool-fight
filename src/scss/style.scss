@@ -12,14 +12,17 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 768px) {
-  span {
-    font-size: 20px;
+.section {
+  margin-top: 81px;
+  
+  &:first-child {
+    margin-top: 84px;
+  }
+
+  &:last-child {
+    margin-bottom: 145px;
   }
 }
 
-@media (max-width: 768px) {
-  body {
-    background-color: #393E46;
-  }
-}
+@import "./sections/section-1";
+@import "./sections/section-2";
