@@ -1,3 +1,5 @@
+import Line from "./Line.js";
+
 export const EDGE_LEFT = 1;
 export const EDGE_RIGHT = 2;
 export const EDGE_TOP = 4;
@@ -21,6 +23,7 @@ export default class Path {
         this.to = to;
 
         this.path = [];
+        this.roundRadiusMap = {};
         this.startEdge = EDGE_NONE;
         this.endEdge = EDGE_NONE;
     }
@@ -146,5 +149,17 @@ export default class Path {
         }
 
         return {x: realOffsetX, y: realOffsetY};
+    }
+
+    /**
+     * @param {Line} line
+     * @param {float} rounding
+     */
+    addLine( line, rounding = 0.0 )
+    {
+        if ( rounding > 1 && this.path.length ) {
+            this.roundRadiusMap[`${this.path.length - 1}-${this.path.length}`] = rounding;
+        }
+        this.path.push(line)
     }
 }

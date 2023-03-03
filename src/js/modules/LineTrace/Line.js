@@ -2,15 +2,16 @@ export default class Line {
     /**
      * @param {float} vectorX
      * @param {float} vectorY
-     * @param {float} verticalWeight
-     * @param {float} horizontalWeight
+     * @param {bool} strict
      */
-    constructor( vectorX, vectorY ) {
+    constructor( vectorX, vectorY, strict = false ) {
         this.vectorX = vectorX;
         this.vectorY = vectorY;
 
         this.scaleX = 1;
         this.scaleY = 1;
+
+        this.strict = strict;
 
         const vectorLength = Math.sqrt(vectorX ** 2 + vectorY ** 2);
         this.vectorNormalizedX = vectorX / vectorLength;
