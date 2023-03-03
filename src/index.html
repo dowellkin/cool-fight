@@ -2,13 +2,11 @@
 <html lang="en">
   @@include('html/head.html',{"title":"Home"})
   <body>
-    @@include('html/header.html',{})
-    <main>
-      <span>
-        It works! 👌
-      </span>
+    <main class="main">
+      @@include('html/section-1.html',{})
+      @@include('html/section-2.html',{})
     </main>
-    @@include('html/footer.html',{})
-    <script src="js/app.min.js"></script>
+
+    @@include('html/scripts.html',{})
   </body>
 </html>
