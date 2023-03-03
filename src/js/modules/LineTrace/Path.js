@@ -21,8 +21,8 @@ export default class Path {
         this.to = to;
 
         this.path = [];
-        this.startEdge = 'none';
-        this.endEdge = 'none';
+        this.startEdge = EDGE_NONE;
+        this.endEdge = EDGE_NONE;
     }
 
     /**

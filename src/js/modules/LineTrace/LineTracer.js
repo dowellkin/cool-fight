@@ -1,4 +1,4 @@
-import Line from './Line';
+import Line from './Path.js';
 
 export const DOT_TYPE_SOLID = 'solid';
 
@@ -6,6 +6,7 @@ export default class LineTracer {
     constructor() {
         this.borderWeight = 2;
         this.dotType = DOT_TYPE_SOLID;
+        this.dotRadius = 5;
 
         this.lineList = [];
     }
