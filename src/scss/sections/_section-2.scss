@@ -88,18 +88,78 @@
       bottom: 0;
       right: 0;
       background: var(--color, $cl-blue);
-      // opacity: 0;
+      opacity: 0;
       transition: background-color .2s ease, opacity .3s ease;
       color: #fff;
       text-align: right;
       max-width: 100%;
+      width: max-content;
+      z-index: 1;
+      padding-bottom: 7px;
+      padding-top: 6px;
       
+      @media (max-width: map-get($grid-breakpoints, lg)) {
+        width: 100%;
+        text-align: left;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: 0;
+        height: 40px;
+        width: 40px;
+        border-bottom-right-radius: 50%;
+        box-shadow: 0 20px 0 0 var(--color, $cl-blue);
+        z-index: -1;
+        transition: box-shadow .2s ease;
+      }
+    
+      &::after {
+        content: "";
+        position: absolute;
+        left: 1px;
+        bottom: -1px;
+        top: 0;
+        width: 62px;
+        transform: translateX(-100%) rotate(180deg);
+        display: block;
+        background: var(--color, $cl-blue);
+        z-index: -1;
+        clip-path: url(#side-clip);
+        transition: background-color .2s ease;
+
+        @media (max-width: map-get($grid-breakpoints, lg)) {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: 0;
+          height: 40px;
+          width: 40px;
+          border-bottom-left-radius: 50%;
+          box-shadow: 0 20px 0 0 var(--color, $cl-blue);
+          z-index: -1;
+          transition: box-shadow .2s ease;
+        }
+      }
     }
 
     &__main-content {
       font-size: 16px;
       font-weight: 400;
       color: rgba(255, 255, 255, .8);
+      font-family: 'Noveo Sans', sans-serif;
+      line-height: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    &__learn-more-wrapper {
+      margin-top: 6px;
+      
+      @media (max-width: map-get($grid-breakpoints, lg)) {
+        display: none;
+      }
     }
 
     &__learn-more {
@@ -112,11 +172,16 @@
         width: 1.5rem;
         height: 1.5rem;
         transition: transform .2s ease;
+        fill: currentColor;
+
+        path {
+          fill: currentColor;
+        }
       }
 
       &:hover {
         svg {
-          transform: translateX(15%);
+          transform: translateX(10%);
         }
       }
     }

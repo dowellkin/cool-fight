@@ -2,6 +2,16 @@
 @import "./vendors/normalize/normalize.css";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+@font-face {
+  font-family: 'Noveo Sans';
+  src: local('./fonts/Noveo Sans Book'), local('Noveo-Sans-Book'),
+    url('./fonts/NoveoSans-Book.woff2') format('woff2'),
+    url('./fonts/NoveoSans-Book.woff') format('woff'),
+    url('./fonts/NoveoSans-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+src\fonts
 svg use {
   fill: currentColor;
 }
