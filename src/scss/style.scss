@@ -27,14 +27,32 @@ body {
   &__title {
     text-align: center;
     font-weight: 500;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  @media (max-width: map-get($grid-breakpoints, xl)) {
+    margin-bottom: 60px;
   }
 
   &:first-child {
     margin-top: 84px;
+
+    @media (max-width: map-get($grid-breakpoints, xl)) {
+      margin-top: 60px;
+    }
   }
 
   &:last-child {
     margin-bottom: 145px;
+
+    @media (max-width: map-get($grid-breakpoints, xl)) {
+      margin-bottom: 124px;
+    }
+
+    @media (max-width: map-get($grid-breakpoints, md)) {
+      margin-bottom: 96px;
+    }
   }
 }
 

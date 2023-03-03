@@ -1,6 +1,12 @@
 .events {
   &__title {
+    font-size: 44px;
     margin-bottom: 73px;
+
+    @media (max-width: map-get($grid-breakpoints, xl)) {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
   }
 
   .event-card {
@@ -57,6 +63,10 @@
       font-size: 18px;
       transition: background-color .2s ease;
       text-transform: capitalize;
+      
+      @media (max-width: map-get($grid-breakpoints, lg)) {
+        font-size: 16px;
+      }
 
       &::before {
         content: "";
