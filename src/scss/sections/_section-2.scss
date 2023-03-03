@@ -176,6 +176,7 @@
       text-decoration: none;
       color: inherit;
       font-weight: 500;
+      transition: color .3s ease;
 
       svg {
         display: inline-block;
@@ -190,6 +191,8 @@
       }
 
       &:hover {
+        color: rgba(255, 255, 255, .7);
+
         svg {
           transform: translateX(10%);
         }
